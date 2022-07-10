@@ -76,6 +76,16 @@ router.post('/edit/:movieId', async (req,res) => {
 
 });
 
+router.get('/delete/:movieId', async (req,res) => {
 
+     try {
+          await movieService.delete(req.params.movieId);
+          
+          res.send('Movie Deleted!')
+     } catch (error) {
+          res.send(error);
+     }
+
+});
 
 module.exports = router;

@@ -28,6 +28,9 @@ const movieSchema = new mongoose.Schema({
     creator:{
         type: mongoose.Types.ObjectId,
         ref: 'User'
+    },
+    countLikes:{
+        type: Number
     }
 });
 

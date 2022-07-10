@@ -1,4 +1,5 @@
 const Movie = require('../models/Movie');
+const User = require('../models/User');
 
 exports.getAll = () => Movie.find();
 
@@ -12,3 +13,19 @@ exports.update = (movieId,movieData) => Movie.findByIdAndUpdate(movieId,movieDat
 
 exports.delete = (movieId) => Movie.findByIdAndDelete(movieId);
 
+exports.like = async (movieId) => {
+    
+    const movie = await Movie.findById(movieId);
+    const user = await User.findById(userId);
+
+    movie.likes.push(user);
+    movie.countLikes += 1;
+
+    user.likedMovies.push(movie);
+
+    movie.save();
+    user.save();
+
+    return movie;
+    
+}

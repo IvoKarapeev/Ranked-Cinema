@@ -88,4 +88,21 @@ router.get('/delete/:movieId', async (req,res) => {
 
 });
 
+router.get('/like/:movieId', async (req,res) => {
+
+     const userId = req.user._id
+     const likedMovie = await movieService.like(req.params.movieId,userId);
+
+     if (likedMovie) {
+
+          res.send('You have liked the movie!');
+
+     } else {
+          
+          res.send('Error with liking the movie!');
+          
+     }
+
+});
+
 module.exports = router;

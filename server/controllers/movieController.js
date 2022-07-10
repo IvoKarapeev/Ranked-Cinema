@@ -32,5 +32,11 @@ router.post('/', async (req,res) => {
 
 });
 
+router.get('/:movieId', async (req,res) => {
+
+     const currentMovie = await movieService.getOneDetailed(req.params.movieId).lean();
+     res.send(currentMovie);
+
+});
 
 module.exports = router;

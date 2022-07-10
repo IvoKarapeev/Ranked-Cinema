@@ -43,4 +43,39 @@ router.get('/:movieId', async (req,res) => {
 
 });
 
+router.get('/edit/:movieId', async (req,res) => {
+
+     const currentMovie = await movieService.getOne(req.params.movieId).lean();
+     if (currentMovie) {
+          res.send(currentMovie);
+     } else {
+          res.send('Current Movie Not Found!');
+     };
+
+});
+
+router.post('/edit/:movieId', async (req,res) => {
+
+     const { name, description, imageUrl, actors, author } = req.body;
+
+     const movieData = {
+          name,
+          description,
+          imageUrl,
+          actors,
+          author 
+     };
+
+     const updatedMovie = await movieService.update(req.params.movieId, movieData);
+
+     if (updatedMovie) {
+          res.send(updatedMovie);
+     } else {
+          res.send('Cant Update This Movie');          
+     };
+
+});
+
+
+
 module.exports = router;

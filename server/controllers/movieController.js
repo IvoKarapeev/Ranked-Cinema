@@ -8,6 +8,29 @@ router.get('/', async (req,res) => {
 
 });
 
+router.post('/', async (req,res) => {
+
+   const { name, description, imageUrl, actors, author } = req.body;
+
+   const newMovie = {
+    name,
+    description,
+    imageUrl,
+    actors,
+    author
+   };
+
+   try {
+    
+        const createdMovie = await movieService.create(newMovie);
+        
+        res.send(createdMovie);
+
+   } catch (error) {
+        res.send(error);    
+   }
+
+});
 
 
 module.exports = router;

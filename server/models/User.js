@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema({
     },
     likedMovies: [{
         type: mongoose.Types.ObjectId,
-        ref: 'User'
+        ref: 'Movie'
     }]
 });
 

@@ -23,4 +23,26 @@ exports.register = async (firstName,secondName,username,password) => {
     const user = await User.create(newUser);
 
     return user;
+
 };
+
+exports.login = async (username,password) => {
+
+    const user = await User.findOne({username});
+
+    if (!user) {
+        throw {
+            error: 'Cannot find user!'
+        };
+    };
+
+    const isAuntenticated = await bcrypt.compare(password,user.password);
+
+    if (!isAuntenticated) {
+        throw {
+            error: 'Wrong username or password!'
+        };
+    };
+
+    return user;
+}

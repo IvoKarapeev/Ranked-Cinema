@@ -1,6 +1,6 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
-const { SALT_ROUNDS } = require('../config/env');
+const { SALT_ROUNDS,SECRET } = require('../config/env');
 
 
 exports.register = async (firstName,secondName,username,password) => {
@@ -45,4 +45,22 @@ exports.login = async (username,password) => {
     };
 
     return user;
-}
+};
+
+exports.createToken = (user) => {
+
+    const payload = {_id: user._id, username: user.username };
+    const option = { expiresIn:'2d' };
+
+    return new Promise((resolve,reject) => {
+        jwt.sign( payload, SECRET, option ,(err,decodedToken) => {
+
+            if (err) {
+                return reject(err);
+            }
+
+            resolve(decodedToken);
+        });
+    });
+
+};

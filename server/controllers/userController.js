@@ -24,4 +24,21 @@ router.post('/register',async (req,res) => {
 
 });
 
-module.exports = router
+router.post('/login',async (req,res) => {
+    const { username, password } = req.body;
+
+    try {
+        
+        const user = await userService.login(username,password);
+        const token = await userService.createToken(user);
+
+        return res.json(token);
+
+    } catch (error) {
+        
+        res.json(error);
+    }
+
+})
+
+module.exports = router;

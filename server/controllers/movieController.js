@@ -27,7 +27,7 @@ router.post('/', async (req,res) => {
         res.send(createdMovie);
 
    } catch (error) {
-        res.send(error);    
+        res.json(error)   
    }
 
 });

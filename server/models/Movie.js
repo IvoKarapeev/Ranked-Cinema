@@ -4,10 +4,12 @@ const movieSchema = new mongoose.Schema({
     name:{
         type: String,
         required:true,
+        minlength:[2,'The Movie name should be at least 2 characters']
     },
     description:{
         type: String,
         required:true,
+        minlength:[10,'The Description should be a at least 10 characters long.']
     },
     imageUrl:{
         type: String,

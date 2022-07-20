@@ -3,8 +3,17 @@ const User = require('../models/User');
 
 exports.getAll = () => Movie.find();
 
-exports.create = (movieItam) => Movie.create(movieItam);
+exports.create = async (movieItam) =>{
 
+    if (!movieItam.imageUrl.startsWith('http')) {
+        throw{
+            error:'The Movie image shoud start with http/https!'
+        };
+    };
+
+    return await Movie.create(movieItam);
+
+} 
 exports.getOneDetailed = (movieId) => Movie.findById(movieId);
 
 exports.getOne = (movieId) => Movie.findById(movieId);

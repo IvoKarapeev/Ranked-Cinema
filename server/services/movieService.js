@@ -18,7 +18,17 @@ exports.getOneDetailed = (movieId) => Movie.findById(movieId);
 
 exports.getOne = (movieId) => Movie.findById(movieId);
 
-exports.update = (movieId,movieData) => Movie.findByIdAndUpdate(movieId,movieData);
+exports.update = async (movieId,movieData) => {
+
+    if (!movieData.imageUrl.startsWith('http')) {
+            throw{
+                error:'The Movie image shoud start with http/https!'
+            };
+        };
+
+    return await Movie.findByIdAndUpdate(movieId,movieData);
+    
+}
 
 exports.delete = (movieId) => Movie.findByIdAndDelete(movieId);
 

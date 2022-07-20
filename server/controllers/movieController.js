@@ -66,13 +66,16 @@ router.post('/edit/:movieId', async (req,res) => {
           author 
      };
 
-     const updatedMovie = await movieService.update(req.params.movieId, movieData);
+     try {
+          
+          const updatedMovie = await movieService.update(req.params.movieId, movieData);
+          
+          res.json(updatedMovie);
 
-     if (updatedMovie) {
-          res.send(updatedMovie);
-     } else {
-          res.send('Cant Update This Movie');          
-     };
+     } catch (error) {
+          res.json(error);
+     }
+
 
 });
 

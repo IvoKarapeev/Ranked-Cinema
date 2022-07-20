@@ -33,6 +33,8 @@ router.post('/login',async (req,res) => {
         const user = await userService.login(username,password);
         const token = await userService.createToken(user);
 
+        res.cookie(COOKIE_SESSION_USER, token, { httpOnly:true });
+
         return res.json(token);
 
     } catch (error) {

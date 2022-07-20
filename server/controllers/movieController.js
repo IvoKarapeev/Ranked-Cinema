@@ -94,16 +94,16 @@ router.get('/delete/:movieId', async (req,res) => {
 router.get('/like/:movieId', async (req,res) => {
 
      const userId = req.user._id
-     const likedMovie = await movieService.like(req.params.movieId,userId);
-
-     if (likedMovie) {
-
-          res.send('You have liked the movie!');
-
-     } else {
+     
+     try {
           
-          res.send('Error with liking the movie!');
-          
+          const likedMovie = await movieService.like(req.params.movieId,userId);
+     
+          res.json(likedMovie);
+     
+     } catch (error) {
+
+          res.json(error);
      }
 
 });

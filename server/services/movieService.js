@@ -32,10 +32,16 @@ exports.update = async (movieId,movieData) => {
 
 exports.delete = (movieId) => Movie.findByIdAndDelete(movieId);
 
-exports.like = async (movieId) => {
+exports.like = async (movieId,userId) => {
     
     const movie = await Movie.findById(movieId);
     const user = await User.findById(userId);
+
+    if (!movie) {
+        throw {
+            error:'There is no such movie!'
+        };
+    };
 
     movie.likes.push(user);
     movie.countLikes += 1;

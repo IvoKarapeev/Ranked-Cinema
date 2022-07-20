@@ -86,7 +86,7 @@ router.get('/delete/:movieId', async (req,res) => {
           
           res.send('Movie Deleted!')
      } catch (error) {
-          res.send(error);
+          res.json(error);
      }
 
 });

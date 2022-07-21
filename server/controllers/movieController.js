@@ -5,21 +5,22 @@ router.get('/', async (req,res) => {
 
     const movies =  await movieService.getAll().lean();
 
-    console.log(req.user);
     res.send(movies);
 
 });
 
 router.post('/', async (req,res) => {
 
-   const { name, description, imageUrl, actors, author } = req.body;
+   const { name, description, imageUrl, trailerUrl, actors, category, author } = req.body;
 
    const newMovie = {
-    name,
-    description,
-    imageUrl,
-    actors,
-    author
+     name,
+     description,
+     imageUrl,
+     trailerUrl,
+     actors,
+     category,
+     author
    };
 
    try {
@@ -93,21 +94,5 @@ router.get('/delete/:movieId', async (req,res) => {
 
 });
 
-router.get('/like/:movieId', async (req,res) => {
-
-     const userId = req.user._id
-     
-     try {
-          
-          const likedMovie = await movieService.like(req.params.movieId,userId);
-     
-          res.json(likedMovie);
-     
-     } catch (error) {
-
-          res.json(error);
-     }
-
-});
 
 module.exports = router;

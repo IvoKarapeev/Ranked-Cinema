@@ -11,6 +11,12 @@ exports.create = async (movieItam) =>{
         };
     };
 
+    if (!movieItam.trailerUrl.startsWith('http')) {
+        throw{
+            error:'The Movie Trailer shoud start with http/https!'
+        };
+    };
+
     return await Movie.create(movieItam);
 
 } 
@@ -31,26 +37,3 @@ exports.update = async (movieId,movieData) => {
 }
 
 exports.delete = (movieId) => Movie.findByIdAndDelete(movieId);
-
-exports.like = async (movieId,userId) => {
-    
-    const movie = await Movie.findById(movieId);
-    const user = await User.findById(userId);
-
-    if (!movie) {
-        throw {
-            error:'There is no such movie!'
-        };
-    };
-
-    movie.likes.push(user);
-    movie.countLikes += 1;
-
-    user.likedMovies.push(movie);
-
-    movie.save();
-    user.save();
-
-    return movie;
-    
-}

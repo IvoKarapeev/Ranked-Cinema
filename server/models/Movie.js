@@ -15,23 +15,28 @@ const movieSchema = new mongoose.Schema({
         type: String,
         required:true,
     },
+    trailerUrl:{
+        type: String,
+        required:true,
+    },
     actors:{
         type: String,
         required:true,
+    },
+    category:{
+        type: String,
+        required:true,
+        enum:['Action','Comedy','Drama','Fantasy','Horror','Mystery','Romance','Thriller']
     },
     author:{
         type: String,
         required:true,  
     },
-    likes:[{
+    comments:[{
         type: mongoose.Types.ObjectId,
         ref: 'User'
     }],
-    creator:{
-        type: mongoose.Types.ObjectId,
-        ref: 'User'
-    },
-    countLikes:{
+    views:{
         type: Number
     }
 });

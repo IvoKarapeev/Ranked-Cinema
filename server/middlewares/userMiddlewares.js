@@ -27,3 +27,19 @@ exports.auth = async ( req,res,next ) => {
     }
 };
 
+exports.isAuth = ( req,res,next ) => {
+    if (!req.user) {
+        return res.json('You need to login first!')
+    }
+
+    next();
+};
+
+exports.isGuest = ( req,res,next ) => {
+    if (req.user) {
+        return res.json('You need to logout first!')
+
+    }
+
+    next();
+};

@@ -1,8 +1,10 @@
 const router = require('express').Router();
 const userService = require('../services/userService');
 const { COOKIE_SESSION_USER } = require('../config/env');
+const { isAuth,isGuest } = require('../middlewares/userMiddlewares');
 
-router.post('/register',async (req,res) => {
+
+router.post('/register',isGuest,async (req,res) => {
 
     const { firstName, secondName, username, password, repeatPassword } = req.body;
 
@@ -25,7 +27,7 @@ router.post('/register',async (req,res) => {
 
 });
 
-router.post('/login',async (req,res) => {
+router.post('/login',isGuest,async (req,res) => {
     const { username, password } = req.body;
 
     try {
@@ -42,6 +44,13 @@ router.post('/login',async (req,res) => {
         res.json(error);
     }
 
-})
+});
+
+router.get('/logout',isAuth,(req,res) => {
+
+    res.clearCookie(COOKIE_SESSION_USER);
+    res.json('You have logged out of your account');
+
+});
 
 module.exports = router;

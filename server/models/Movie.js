@@ -32,8 +32,16 @@ const movieSchema = new mongoose.Schema({
         type: String,
         required:true,  
     },
+    creator:{
+        type:mongoose.Types.ObjectId,
+        ref:'User',
+        required:true,  
+    },
     comments:[{
-        user: mongoose.Types.ObjectId,
+        user: {
+            type:mongoose.Types.ObjectId,
+            ref:'User'
+        },
         comment: String
     }],
     views:{

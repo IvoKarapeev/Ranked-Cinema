@@ -14,6 +14,7 @@ router.post('/', async (req,res) => {
    const { name, description, imageUrl, trailerUrl, actors, category, author } = req.body;
 
    const views = 0;
+   const creator = req.user;
 
    const newMovie = {
      name,
@@ -23,7 +24,8 @@ router.post('/', async (req,res) => {
      actors,
      category,
      author,
-     views
+     views,
+     creator
    };
 
    try {
@@ -104,11 +106,12 @@ router.get('/comment/:movieId', async (req,res) => {
 
      try {
       
-          const movie = await movieService.getComments(req.params.movieId);
-          const comments = movie.comments;
+          const { comments,users } = await movieService.getComments(req.params.movieId);
 
-
-          res.json(comments)
+          res.json({
+               comments,
+               users
+          });
 
      } catch (error) {
           

@@ -70,5 +70,26 @@ exports.getComments = async (movieId) =>{
 
     const movie = await Movie.findById(movieId).populate('comments');
 
-    return movie;
+    const comments = movie.comments;
+    const usersId = comments.map(x => x.user);
+
+    let users = [];
+    
+    const getUsers = async () => {
+        await Promise.all(
+            usersId.map(async (userId) => {
+            const user = await User.findById(userId);
+
+            users.push(user);
+        }))
+        
+        return users;
+    }
+    
+    await getUsers();
+
+    return {
+        comments,
+        users
+    };
 }

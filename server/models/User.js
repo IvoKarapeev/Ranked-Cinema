@@ -19,11 +19,7 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required:true
-    },
-    likedMovies: [{
-        type: mongoose.Types.ObjectId,
-        ref: 'Movie'
-    }]
+    }
 });
 
 const User = mongoose.model('User',userSchema);

@@ -100,5 +100,42 @@ router.get('/delete/:movieId', async (req,res) => {
 
 });
 
+router.get('/comment/:movieId', async (req,res) => {
+
+     try {
+      
+          const movie = await movieService.getComments(req.params.movieId);
+          const comments = movie.comments;
+
+
+          res.json(comments)
+
+     } catch (error) {
+          
+          res.json(error);
+     }
+
+});
+
+router.post('/comment/:movieId', async (req,res) => {
+
+     try {
+          const userId = req.user._id;
+          const { comment } = req.body;
+
+          console.log(userId, comment);
+
+          const movie = await movieService.comment(req.params.movieId, userId, comment);
+           
+          res.json(movie);
+
+     } catch (error) {
+          
+          res.json(error)
+
+     }
+
+});
+
 
 module.exports = router;

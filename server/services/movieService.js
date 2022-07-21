@@ -52,3 +52,23 @@ exports.update = async (movieId,movieData) => {
 }
 
 exports.delete = (movieId) => Movie.findByIdAndDelete(movieId);
+
+exports.comment = async (movieId,userId,comment) => {
+
+    const movie = await Movie.findById(movieId);
+    const user = await User.findById(userId);
+
+    movie.comments.push({user:user,comment:comment});
+
+    movie.save();
+
+    return movie;
+
+}
+
+exports.getComments = async (movieId) =>{
+
+    const movie = await Movie.findById(movieId).populate('comments');
+
+    return movie;
+}

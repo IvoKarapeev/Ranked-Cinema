@@ -31,9 +31,23 @@ exports.getOneDetailed = async (movieId) => {
     return movie;
 }
 
-exports.getOne = (movieId) => Movie.findById(movieId);
+exports.getOne = async (movieId,userId) => {
+ 
+    const movie = await Movie.findById(movieId).populate('creator');
 
-exports.update = async (movieId,movieData) => {
+    if (movie.creator._id != userId) {
+        throw{
+            error: 'You must be the owner the edit!'
+        };
+    };
+
+    console.log(movie);
+
+    return movie;
+
+}
+
+exports.update = async (movieId,movieData,userId) => {
 
     if (!movieData.imageUrl.startsWith('http')) {
             throw{
@@ -47,11 +61,31 @@ exports.update = async (movieId,movieData) => {
         };
     };
 
+    const movie = await Movie.findById(movieId).populate('creator');
+    
+    if (movie.creator._id != userId) {
+        throw{
+            error: 'You must be the owner the edit!'
+        };
+    };
+
     return await Movie.findByIdAndUpdate(movieId,movieData);
     
 }
 
-exports.delete = (movieId) => Movie.findByIdAndDelete(movieId);
+exports.delete = async (movieId,userId) => {
+    
+    const movie = await Movie.findById(movieId).populate('creator');
+    
+    if (movie.creator._id != userId) {
+        throw{
+            error: 'You must be the owner the delete!'
+        };
+    };
+
+
+    return await Movie.findByIdAndDelete(movieId)
+};
 
 exports.comment = async (movieId,userId,comment) => {
 

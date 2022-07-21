@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const movieService = require('../services/movieService');
+const { isAuth } = require('../middlewares/userMiddlewares');
 
 router.get('/', async (req,res) => {
 
@@ -9,7 +10,7 @@ router.get('/', async (req,res) => {
 
 });
 
-router.post('/', async (req,res) => {
+router.post('/',isAuth, async (req,res) => {
 
    const { name, description, imageUrl, trailerUrl, actors, category, author } = req.body;
 
@@ -51,18 +52,22 @@ router.get('/:movieId', async (req,res) => {
 
 });
 
-router.get('/edit/:movieId', async (req,res) => {
+router.get('/edit/:movieId',isAuth, async (req,res) => {
 
-     const currentMovie = await movieService.getOne(req.params.movieId).lean();
-     if (currentMovie) {
-          res.send(currentMovie);
-     } else {
-          res.send('Current Movie Not Found!');
-     };
+     const userId = req.user._id;
+     try {
+          const currentMovie = await movieService.getOne(req.params.movieId,userId);
+          
+          res.json(currentMovie);
+
+     } catch (error) {
+
+          res.json(error);
+     }
 
 });
 
-router.post('/edit/:movieId', async (req,res) => {
+router.post('/edit/:movieId',isAuth, async (req,res) => {
 
      const { name, description, imageUrl, trailerUrl, actors, category, author } = req.body;
 
@@ -76,10 +81,11 @@ router.post('/edit/:movieId', async (req,res) => {
           author
      };
 
+     const userId = req.user._id;
      
      try {
           
-          const updatedMovie = await movieService.update(req.params.movieId, movieData);
+          const updatedMovie = await movieService.update(req.params.movieId, movieData, userId);
           
           res.json(updatedMovie);
 
@@ -90,10 +96,12 @@ router.post('/edit/:movieId', async (req,res) => {
 
 });
 
-router.get('/delete/:movieId', async (req,res) => {
+router.get('/delete/:movieId',isAuth, async (req,res) => {
 
      try {
-          await movieService.delete(req.params.movieId);
+          const userId = req.user._id;
+
+          await movieService.delete(req.params.movieId,userId);
           
           res.send('Movie Deleted!')
      } catch (error) {
@@ -120,7 +128,7 @@ router.get('/comment/:movieId', async (req,res) => {
 
 });
 
-router.post('/comment/:movieId', async (req,res) => {
+router.post('/comment/:movieId',isAuth, async (req,res) => {
 
      try {
           const userId = req.user._id;

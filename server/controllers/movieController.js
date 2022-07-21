@@ -59,19 +59,23 @@ router.get('/edit/:movieId', async (req,res) => {
 
 router.post('/edit/:movieId', async (req,res) => {
 
-     const { name, description, imageUrl, actors, author } = req.body;
+     const { name, description, imageUrl, trailerUrl, actors, category, author } = req.body;
 
      const movieData = {
           name,
           description,
           imageUrl,
+          trailerUrl,
           actors,
-          author 
+          category,
+          author
      };
 
+     
      try {
           
           const updatedMovie = await movieService.update(req.params.movieId, movieData);
+          console.log(updatedMovie);
           
           res.json(updatedMovie);
 

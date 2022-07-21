@@ -30,7 +30,13 @@ exports.update = async (movieId,movieData) => {
             throw{
                 error:'The Movie image shoud start with http/https!'
             };
+    };
+
+    if (!movieData.trailerUrl.startsWith('http')) {
+        throw{
+            error:'The Movie Trailer shoud start with http/https!'
         };
+    };
 
     return await Movie.findByIdAndUpdate(movieId,movieData);
     

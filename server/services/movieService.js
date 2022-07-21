@@ -20,7 +20,16 @@ exports.create = async (movieItam) =>{
     return await Movie.create(movieItam);
 
 } 
-exports.getOneDetailed = (movieId) => Movie.findById(movieId);
+exports.getOneDetailed = async (movieId) => {
+
+    const movie = await Movie.findById(movieId);
+
+    movie.views += 1;
+
+    movie.save();
+
+    return movie;
+}
 
 exports.getOne = (movieId) => Movie.findById(movieId);
 

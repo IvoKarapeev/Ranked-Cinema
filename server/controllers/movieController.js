@@ -13,6 +13,8 @@ router.post('/', async (req,res) => {
 
    const { name, description, imageUrl, trailerUrl, actors, category, author } = req.body;
 
+   const views = 0;
+
    const newMovie = {
      name,
      description,
@@ -20,7 +22,8 @@ router.post('/', async (req,res) => {
      trailerUrl,
      actors,
      category,
-     author
+     author,
+     views
    };
 
    try {
@@ -37,7 +40,7 @@ router.post('/', async (req,res) => {
 
 router.get('/:movieId', async (req,res) => {
 
-     const currentMovie = await movieService.getOneDetailed(req.params.movieId).lean();
+     const currentMovie = await movieService.getOneDetailed(req.params.movieId);
      if (currentMovie) {
           res.send(currentMovie);
      } else {
@@ -75,7 +78,6 @@ router.post('/edit/:movieId', async (req,res) => {
      try {
           
           const updatedMovie = await movieService.update(req.params.movieId, movieData);
-          console.log(updatedMovie);
           
           res.json(updatedMovie);
 

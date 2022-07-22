@@ -6,7 +6,7 @@ router.get('/', async (req,res) => {
 
     const movies =  await movieService.getAll().lean();
 
-    res.send(movies);
+    res.json(movies);
 
 });
 
@@ -36,7 +36,7 @@ router.post('/',isAuth, async (req,res) => {
         res.send(createdMovie);
 
    } catch (error) {
-        res.json(error)   
+        res.status(401).json(error)   
    }
 
 });
@@ -45,9 +45,9 @@ router.get('/:movieId', async (req,res) => {
 
      const currentMovie = await movieService.getOneDetailed(req.params.movieId);
      if (currentMovie) {
-          res.send(currentMovie);
+          res.json(currentMovie);
      } else {
-          res.send('Current Movie Not Found!');
+          res.json('Current Movie Not Found!');
      };
 
 });
@@ -62,12 +62,12 @@ router.get('/edit/:movieId',isAuth, async (req,res) => {
 
      } catch (error) {
 
-          res.json(error);
+          res.status(403).json(error);
      }
 
 });
 
-router.post('/edit/:movieId',isAuth, async (req,res) => {
+router.put('/:movieId',isAuth, async (req,res) => {
 
      const { name, description, imageUrl, trailerUrl, actors, category, author } = req.body;
 
@@ -90,13 +90,13 @@ router.post('/edit/:movieId',isAuth, async (req,res) => {
           res.json(updatedMovie);
 
      } catch (error) {
-          res.json(error);
+          res.status(403).json(error);
      }
 
 
 });
 
-router.get('/delete/:movieId',isAuth, async (req,res) => {
+router.delete('/:movieId',isAuth, async (req,res) => {
 
      try {
           const userId = req.user._id;
@@ -105,7 +105,7 @@ router.get('/delete/:movieId',isAuth, async (req,res) => {
           
           res.send('Movie Deleted!')
      } catch (error) {
-          res.json(error);
+          res.status(403).json(error);
      }
 
 });

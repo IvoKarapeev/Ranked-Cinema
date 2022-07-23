@@ -3,3 +3,15 @@
     width: 97vw;
     height: 90vh;
 }
+
+.home-information{
+    color: rgb(235, 219, 245);
+    position: absolute;
+    top: 330px;
+    left: 20px;
+    width: 400px;
+    height: 600px;
+    text-align: center;
+    font-size: 30px;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+}

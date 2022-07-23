@@ -6,8 +6,7 @@ const Header = () => {
     return (
         <nav className={styles.navbar}>
             {/* LOGO */}
-            <img src="logohere" alt="" className={styles.logo} />
-            {/* <img src="/static/images/imageOfText.png" alt="" className="braveEng" /> */}
+            <img src="/images/logo.png" alt="" className={styles.logo} />
             <hr />
             {/* NAVIGATION MENU */}
             <ul className={styles['nav-links']}>
@@ -18,9 +17,6 @@ const Header = () => {
                 </li>
                 <li>
                     <Link to='/movies'>All Movies</Link>
-                </li>
-                <li>
-                    <Link to='/about'>About</Link>
                 </li>
                 <li>
                     <Link to='/movies/ranked'>The Most Liked</Link>

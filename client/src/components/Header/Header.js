@@ -1,5 +1,7 @@
 import styles from './Header.module.css';
 
+import { Link } from 'react-router-dom';
+
 const Header = () => {
     return (
         <nav className={styles.navbar}>
@@ -12,30 +14,30 @@ const Header = () => {
                 {/* NAVIGATION MENUS */}
                 <div className={styles.menu}>
                 <li>
-                    <a href="/">Home</a>
+                    <Link to='/'>Home</Link>
                 </li>
                 <li>
-                    <a href="/">All Movies</a>
+                    <Link to='/movies'>All Movies</Link>
                 </li>
                 <li>
-                    <a href="/">About</a>
+                    <Link to='/about'>About</Link>
                 </li>
                 <li>
-                    <a href="/">The Most Liked</a>
+                    <Link to='/movies/ranked'>The Most Liked</Link>
                 </li>
                 <li>
-                    <a href="/">
+                    <Link to='/welcome'>
                     Welcome,user
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a href="/">Logout</a>
+                    <Link to='/logout'>Logout</Link>
                 </li>
                 <li>
-                    <a href="/">Login</a>
+                    <Link to='/login'>Login</Link>
                 </li>
                 <li>
-                    <a href="/">Register</a>
+                    <Link to='/register'>Register</Link>
                 </li>
                 </div>
             </ul>

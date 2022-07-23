@@ -17,17 +17,10 @@
 .logo {
     display: block;
     text-align: center;
-    height: 80px;
+    height: 70px;
     width: 100px;
 }
 
-.braveEng {
-    display: block;
-    text-align: center;
-    /* background-image: url("../images/imageOfText.png"); */
-    height: 50px;
-    width: 300px;
-}
 /* NAVBAR MENU */
 .menu {
     display: flex;

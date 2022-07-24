@@ -1,3 +1,5 @@
+import { useState,useEffect } from 'react';
+
 import { Routes, Route } from "react-router-dom";
 
 import Home from "./components/Home/Home";
@@ -6,6 +8,9 @@ import CatalogMovies from "./components/CatalogMovies/CatalogMovies";
 
 
 function App() {
+
+    const [movies,setMovies] = useState([]);
+
     return (
         <div>
             <Header />
@@ -13,7 +18,7 @@ function App() {
             <main>
                 <Routes>
                     <Route path="/" element={<Home />}/>
-                    <Route path="/movies" element={<CatalogMovies />}/>
+                    <Route path="/movies" element={<CatalogMovies movies={movies}/>}/>
                 </Routes>
             </main>
         </div>

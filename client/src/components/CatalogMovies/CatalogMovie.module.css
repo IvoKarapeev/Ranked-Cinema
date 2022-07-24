@@ -55,7 +55,7 @@
   border-radius:16px;
   overflow:hidden;
   -webkit-box-shadow:  15px 15px 27px #e1e1e3, -15px -15px 27px #ffffff;
-  box-shadow:  9px 9px 9px #d2c5f3, -9px -9px 9px #d2c5f3;
+  box-shadow:  11px 11px 11px #d2c5f3, -11px -11px 11px #d2c5f3;
 }
 /* ^-- The margin bottom is necessary for the drop shadow otherwise it gets clipped in certain cases. */
 
@@ -63,15 +63,14 @@
 
 .property-image
 {
-  height:11em;
-  width:14em;
-  padding:1em 2em;
+  height:12em;
+  width:16em;
+  /* padding:1em 0em 0em; */
   position:Absolute;
-  top:0px;
+  top:-16px;
   -webkit-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
   -o-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
   transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
-  background-image:url('https://cdn.photographylife.com/wp-content/uploads/2017/01/What-is-landscape-photography.jpg');
   background-size:cover;
   background-repeat:no-repeat;
 }
@@ -96,9 +95,10 @@
 
 .property-social-icons
 {
-  width:1em;
-  height:1em;
-  background-color:black;
+  width:3.5em;
+  height:1.5em;
+  color: black;
+  background-color:rgb(138, 99, 163);
   position:absolute;
   bottom:1em;
   left:1em;
@@ -116,7 +116,7 @@
 }
 .property-card:hover .property-image
 {
-  height:18em;
+  height:19em;
 }
 
 .property-card:hover .property-social-icons
@@ -126,6 +126,17 @@
 
 .property-card:hover .property-social-icons:hover
 {
-  background-color:blue;
+  width: 56px;
+  background-color:rgb(255, 255, 255);
   cursor:pointer;
+}
+
+.no-movies{
+  position: absolute;
+  top: 450px;
+  left: 820px;
+  text-align: center;
+  font-size: 50px;
+  color: #815e9f;
+  
 }

@@ -13,7 +13,7 @@ const MovieItam = ({movie}) => {
                 {movie.trailerUrl}
                 </p>
             </div>
-            <Link to="/details">
+            <Link to={`/movies/details/${movie._id}`}>
                 <div className={styles["property-social-icons"]}>
                     Details 
                 </div>

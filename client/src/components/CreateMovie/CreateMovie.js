@@ -3,7 +3,7 @@ import styles from './CreateMovie.module.css';
 
 const CreateMovie = () => {
 
-    const [gameData,setGameData] = useState({
+    const [movieData,setMovieData] = useState({
         name:'',
         description:'',
         imageUrl:'',
@@ -17,7 +17,7 @@ const CreateMovie = () => {
 
 
     const onChange = (e) => {
-        setGameData(state => ({
+        setMovieData(state => ({
             ...state,
             [e.target.name]:e.target.value
         }));
@@ -26,22 +26,22 @@ const CreateMovie = () => {
     const minlength = (e,limit) => {
         setErrors(state => ({
             ...state,
-            [e.target.name]: gameData[e.target.name].length < limit,
+            [e.target.name]: movieData[e.target.name].length < limit,
         }));
     };
 
     const httpValidation = (e) => {
         setErrors(state => ({
             ...state,
-            [e.target.name]: !gameData[e.target.name].startsWith('http')
+            [e.target.name]: !movieData[e.target.name].startsWith('http')
         }));
     };
 
     const onSubmit = (e) => {
         e.preventDefault();
 
-        console.log(gameData);
-        setGameData({
+        console.log(movieData);
+        setMovieData({
             name:'',
             description:'',
             imageUrl:'',
@@ -67,7 +67,7 @@ const CreateMovie = () => {
                 placeholder="Enter Movie Name"
                 name="name"
                 id="name"
-                value={gameData.name}
+                value={movieData.name}
                 onChange={onChange}
                 onBlur={(e) => minlength(e,2)}
             />
@@ -83,7 +83,7 @@ const CreateMovie = () => {
                 placeholder="Description"
                 name="description"
                 id="description"
-                value={gameData.description}
+                value={movieData.description}
                 onChange={onChange}
                 onBlur={(e) => minlength(e,10)}
             />
@@ -99,7 +99,7 @@ const CreateMovie = () => {
                 placeholder="Enter imageUrl"
                 name="imageUrl"
                 id="imageUrl"
-                value={gameData.imageUrl}
+                value={movieData.imageUrl}
                 onChange={onChange}
                 onBlur={(e) => httpValidation(e)}
             />
@@ -115,7 +115,7 @@ const CreateMovie = () => {
                 placeholder="Enter trailerUrl"
                 name="trailerUrl"
                 id="trailerUrl"
-                value={gameData.trailerUrl}
+                value={movieData.trailerUrl}
                 onChange={onChange}
                 onBlur={(e) => httpValidation(e)}
             />
@@ -131,7 +131,7 @@ const CreateMovie = () => {
                 placeholder="Enter Actors"
                 name="actors"
                 id="actors"
-                value={gameData.actors}
+                value={movieData.actors}
                 onChange={onChange}
             />
              <label htmlFor="category">
@@ -143,7 +143,7 @@ const CreateMovie = () => {
                 placeholder="Enter Category"
                 name="category"
                 id="category"
-                value={gameData.category}
+                value={movieData.category}
                 onChange={onChange}
             />
             <label htmlFor="author">
@@ -155,7 +155,7 @@ const CreateMovie = () => {
                 placeholder="Enter Moive Author"
                 name="author"
                 id="author"
-                value={gameData.author}
+                value={movieData.author}
                 onChange={onChange}
             />
             <hr className={styles.separator}/>

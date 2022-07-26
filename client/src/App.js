@@ -8,6 +8,7 @@ import Home from "./components/Home/Home";
 import Header from "./components/Header/Header";
 import CatalogMovies from "./components/CatalogMovies/CatalogMovies";
 import CreateMovie from './components/CreateMovie/CreateMovie';
+import MovieDetails from './components/MovieDetails/MovieDetails';
 
 
 function App() {
@@ -21,8 +22,13 @@ function App() {
             });
     },[]);
 
+    const getDetails = (movieId) => {
+        return movieService.getDetails(movieId)
+            .then(res => res.json());
+    };
+
     return (
-        <MovieContext.Provider value={{movies}} >
+        <MovieContext.Provider value={{movies,getDetails}} >
             <div>
                 <Header />
 
@@ -31,6 +37,7 @@ function App() {
                         <Route path="/" element={<Home />}/>
                         <Route path="/movies" element={<CatalogMovies/>}/>
                         <Route path="/movies/create" element={<CreateMovie/>}/>
+                        <Route path="/movies/:movieId" element={<MovieDetails/>}/>
                     </Routes>
                 </main>
             </div>

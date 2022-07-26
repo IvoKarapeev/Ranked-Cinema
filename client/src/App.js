@@ -2,6 +2,7 @@ import { useState,useEffect } from 'react';
 import { Routes, Route } from "react-router-dom";
 
 import * as movieService from './services/movieService';
+import { MovieContext } from './contexts/MovieContext';
 
 import Home from "./components/Home/Home";
 import Header from "./components/Header/Header";
@@ -21,17 +22,19 @@ function App() {
     },[]);
 
     return (
-        <div>
-            <Header />
+        <MovieContext.Provider value={{movies}} >
+            <div>
+                <Header />
 
-            <main>
-                <Routes>
-                    <Route path="/" element={<Home />}/>
-                    <Route path="/movies" element={<CatalogMovies movies={movies}/>}/>
-                    <Route path="/movies/create" element={<CreateMovie/>}/>
-                </Routes>
-            </main>
-        </div>
+                <main>
+                    <Routes>
+                        <Route path="/" element={<Home />}/>
+                        <Route path="/movies" element={<CatalogMovies/>}/>
+                        <Route path="/movies/create" element={<CreateMovie/>}/>
+                    </Routes>
+                </main>
+            </div>
+        </MovieContext.Provider>
     );
 }
 

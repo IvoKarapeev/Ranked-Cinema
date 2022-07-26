@@ -1,9 +1,12 @@
+import { useContext } from "react";
+import MovieItam from "./MovieItem";
+import { MovieContext } from "../../contexts/MovieContext";
+
 import styles from "./CatalogMovie.module.css";
 
-import MovieItam from "./MovieItem";
+const CatalogMovies = () => {
 
-const CatalogMovies = ({movies}) => {
-
+    const { movies } = useContext(MovieContext);
 
     return (
         <section className={styles["section-catalog"]}>

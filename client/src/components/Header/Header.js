@@ -22,6 +22,9 @@ const Header = () => {
                     <Link to='/movies/ranked'>The Most Liked</Link>
                 </li>
                 <li>
+                    <Link to='/movies/create'>Create Movie</Link>
+                </li>
+                <li>
                     <Link to='/welcome'>
                     Welcome,user
                     </Link>

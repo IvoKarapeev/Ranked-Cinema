@@ -11,6 +11,7 @@ import CreateMovie from './components/CreateMovie/CreateMovie';
 import MovieDetails from './components/MovieDetails/MovieDetails';
 import EditMovie from './components/EditMovie/EditMovie';
 import Register from './components/Register/Register';
+import Login from './components/Login/Login';
 
 
 function App() {
@@ -42,6 +43,7 @@ function App() {
                         <Route path="/movies/:movieId" element={<MovieDetails/>}/>
                         <Route path="/movies/edit/:movieId" element={<EditMovie />}/>
                         <Route path="/register" element={<Register />}/>
+                        <Route path="/login" element={<Login />}/>
                     </Routes>
                 </main>
             </div>

@@ -10,6 +10,7 @@ import CatalogMovies from "./components/CatalogMovies/CatalogMovies";
 import CreateMovie from './components/CreateMovie/CreateMovie';
 import MovieDetails from './components/MovieDetails/MovieDetails';
 import EditMovie from './components/EditMovie/EditMovie';
+import Register from './components/Register/Register';
 
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
                         <Route path="/movies/create" element={<CreateMovie/>}/>
                         <Route path="/movies/:movieId" element={<MovieDetails/>}/>
                         <Route path="/movies/edit/:movieId" element={<EditMovie />}/>
+                        <Route path="/register" element={<Register />}/>
                     </Routes>
                 </main>
             </div>

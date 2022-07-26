@@ -1,0 +1,49 @@
+
+.container {
+    margin-top: 15px;
+    margin-left: 300px;
+    background-color: rgb(123, 122, 122);
+    width: 68%;
+    height: 90%;
+    padding: 16px;
+    box-sizing: border-box
+    }
+      
+    .input-text  {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+    }
+    
+    .input-text:focus {
+    background-color: #ddd;
+    outline: none;
+    }
+    
+    .separator {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+    }
+    
+    .registerbtn {
+    background-color: #622c75;
+    color: white;
+    padding: 16px 20px;
+    margin: 10px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+    }
+    
+    .registerbtn:hover {
+    background-color: #501169;
+    }
+    
+    .validate{
+        color: rgb(228, 5, 5);
+    }
+    

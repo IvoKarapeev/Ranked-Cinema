@@ -2,9 +2,9 @@
 .container {
 margin-top: 15px;
 margin-left: 300px;
-background-color: rgb(199, 165, 244);
-width: 1300px;
-height: 850px;
+background-color: rgb(123, 122, 122);
+width: 68%;
+height: 90%;
 padding: 16px;
 box-sizing: border-box
 }
@@ -23,13 +23,13 @@ background-color: #ddd;
 outline: none;
 }
 
-hr {
+.separator {
 border: 1px solid #f1f1f1;
 margin-bottom: 25px;
 }
 
 .createbtn {
-background-color: #5b1972;
+background-color: #622c75;
 color: white;
 padding: 16px 20px;
 margin: 10px 0;
@@ -40,5 +40,9 @@ opacity: 0.9;
 }
 
 .createbtn:hover {
-opacity:1;
+background-color: #501169;
+}
+
+.validate{
+    color: rgb(228, 5, 5);
 }

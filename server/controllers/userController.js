@@ -1,6 +1,5 @@
 const router = require('express').Router();
 const userService = require('../services/userService');
-const { COOKIE_SESSION_USER } = require('../config/env');
 const { isAuth,isGuest } = require('../middlewares/userMiddlewares');
 
 
@@ -17,7 +16,6 @@ router.post('/register',isGuest,async (req,res) => {
         const user = await userService.register(firstName, secondName, username, password);
         const token = await userService.createToken(user);
 
-        res.cookie(COOKIE_SESSION_USER, token, { httpOnly:true });
         return res.json(token);
 
     } catch (error) {
@@ -35,8 +33,6 @@ router.post('/login',isGuest,async (req,res) => {
         const user = await userService.login(username,password);
         const token = await userService.createToken(user);
 
-        res.cookie(COOKIE_SESSION_USER, token, { httpOnly:true });
-
         return res.json(token);
 
     } catch (error) {
@@ -48,7 +44,6 @@ router.post('/login',isGuest,async (req,res) => {
 
 router.get('/logout',isAuth,(req,res) => {
 
-    res.clearCookie(COOKIE_SESSION_USER);
     res.json('You have logged out of your account');
 
 });

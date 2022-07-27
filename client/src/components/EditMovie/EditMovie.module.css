@@ -1,7 +1,7 @@
 .container {
     margin-top: 15px;
     margin-left: 300px;
-    background-color: rgb(123, 122, 122);
+    background-color: rgb(184, 186, 192);
     width: 68%;
     height: 90%;
     padding: 16px;
@@ -28,7 +28,7 @@ margin-bottom: 25px;
 }
 
 .editbtn {
-background-color: #622c75;
+background-color: #796EA8;
 color: white;
 padding: 16px 20px;
 margin: 10px 0;
@@ -39,7 +39,7 @@ opacity: 0.9;
 }
 
 .editbtn:hover {
-background-color: #501169;
+background-color: #675082;
 }
 
 .validate{

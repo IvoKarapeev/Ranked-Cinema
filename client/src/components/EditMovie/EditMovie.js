@@ -163,7 +163,7 @@ const EditMovie = () => {
             />
             <hr className={styles.separator}/>
             <button type="submit" className={styles.editbtn}>
-                Create Movie
+                Edit Movie
             </button>
             </div>
         </form>

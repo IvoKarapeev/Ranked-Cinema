@@ -5,11 +5,7 @@ const { isGuest } = require('../middlewares/userMiddlewares');
 
 router.post('/register',isGuest,async (req,res) => {
 
-    const { firstName, secondName, username, password, repeatPassword } = req.body;
-
-    if (password !== repeatPassword) {
-        return res.json('Passwords must be equal!');
-    };
+    const { firstName, secondName, username, password } = req.body;
 
     try {
         

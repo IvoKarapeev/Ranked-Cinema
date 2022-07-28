@@ -30,7 +30,7 @@ const requester = async (method,url,data) => {
         const response = await buildRequest;
         const result = await response.json();
         
-        if (response.error) {
+        if (!response.ok) {
             return {}
         }else {
             return result;

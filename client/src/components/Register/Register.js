@@ -1,13 +1,22 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthContext';
+import * as authService from '../../services/authService';
+
 import styles from './Register.module.css';
 
-
 const Register = () => {
+
+    const { userLogin } = useContext(AuthContext)
+    const navigate = useNavigate()
+
     const [userData,setUserData] = useState({
         firstName:'',
         secondName:'',
         username:'',
-        password:''
+        password:'',
+        repeatPassword:''
     });
 
     const [errors,setErrors] = useState({});
@@ -24,14 +33,27 @@ const Register = () => {
     const onSubmit = (e) => {
         e.preventDefault();
 
+        
+        if (userData.password !== userData.repeatPassword) {
+            return;
+        };
+        
+        authService.register(userData.firstName, userData.secondName, userData.username, userData.password)
+            .then(authData => {
+                userLogin(authData);
+                navigate('/')
+            })
+            .catch(() => {
+                navigate('/');
+            })
+
+
         setUserData({
-            name:'',
-            description:'',
-            imageUrl:'',
-            trailerUrl:'',
-            actors:'',
-            category:'',
-            author:''
+            firstName:'',
+            secondName:'',
+            username:'',
+            password:'',
+            repeatPassword:''
         });
     };
 
@@ -45,7 +67,7 @@ const Register = () => {
     const equalPasswords = (e) => {
         setErrors(state => ({
             ...state,
-            [e.target.name]: userData[e.target.name] != userData.password
+            [e.target.name]: userData[e.target.name] !== userData.password
         }));
     }
 

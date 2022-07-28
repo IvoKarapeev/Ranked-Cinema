@@ -14,6 +14,7 @@ import EditMovie from './components/EditMovie/EditMovie';
 import Register from './components/Register/Register';
 import Login from './components/Login/Login';
 import useLocalStorige from './hooks/useLocalStorige';
+import Logout from './components/Logout/Logout';
 
 
 function App() {
@@ -33,11 +34,17 @@ function App() {
     };
 
     const userLogin = (authData) => {
-        setAuth(authData)
+        setAuth(authData);
     };
 
+    const userLogout = () => {
+        setAuth({});
+    };
+
+    
+
     return (
-        <AuthContext.Provider value={{user:auth,userLogin}}>
+        <AuthContext.Provider value={{user:auth,userLogin,userLogout}}>
             <div>
                 <Header />
 
@@ -51,6 +58,7 @@ function App() {
                             <Route path="/movies/edit/:movieId" element={<EditMovie />}/>
                             <Route path="/register" element={<Register />}/>
                             <Route path="/login" element={<Login />}/>
+                            <Route path="/logout" element={<Logout />}/>
                         </Routes>
                     </main>
                 </MovieContext.Provider>

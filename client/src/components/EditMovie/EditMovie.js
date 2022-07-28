@@ -1,6 +1,9 @@
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { MovieContext } from '../../contexts/MovieContext';
 import styles from './EditMovie.module.css';
 
+import * as movieService from '../../services/movieService';
 
 const EditMovie = () => {
 
@@ -15,6 +18,18 @@ const EditMovie = () => {
     });
 
     const [errors,setErrors] = useState({});
+
+    const navigate = useNavigate();
+    
+    const { movieId } = useParams();
+    const { getDetails,editMovie } = useContext(MovieContext);
+    
+    useEffect(() => {
+        getDetails(movieId)
+            .then(res => {
+                setMovieData(res);
+            })
+    },[]);
 
 
     const onChange = (e) => {
@@ -41,7 +56,12 @@ const EditMovie = () => {
     const onSubmit = (e) => {
         e.preventDefault();
 
-        console.log(movieData);
+
+        movieService.edit(movieId,movieData)
+            .then((movieResult) => {
+                editMovie(movieId,movieData);
+                navigate(`/movies/${movieId}`);
+            });
 
         setMovieData({
             name:'',
@@ -53,8 +73,7 @@ const EditMovie = () => {
             author:''
         });
     };
-
-
+    
     return (
         <form onSubmit={onSubmit}>
             <div className={styles.container}>
@@ -67,7 +86,6 @@ const EditMovie = () => {
             <input
                 className={styles["input-text"]}
                 type="text"
-                placeholder="Enter Movie Name"
                 name="name"
                 id="name"
                 value={movieData.name}

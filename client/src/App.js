@@ -47,6 +47,10 @@ function App() {
             movieData
         ]);
     };
+
+    const editMovie = (movieId,movieData) => {
+        setMovies(state => state.map(x => x._id === movieId ? movieData : x));
+    }
     
 
     return (
@@ -54,7 +58,7 @@ function App() {
             <div>
                 <Header />
 
-                <MovieContext.Provider value={{movies,getDetails,addMovie}} >
+                <MovieContext.Provider value={{movies,getDetails,addMovie,editMovie}} >
                     <main>
                         <Routes>
                             <Route path="/" element={<Home />}/>

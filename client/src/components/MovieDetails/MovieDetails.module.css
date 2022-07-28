@@ -49,6 +49,7 @@
 
 /* Style p element */
 .paragraph {
+    word-wrap: break-word;
     font-size: 14px;
     color: #7f8c9b;
     line-height: 150%;

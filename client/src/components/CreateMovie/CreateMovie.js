@@ -50,6 +50,7 @@ const CreateMovie = () => {
 
         movieService.create(movieData)
             .then((movieResult) => {
+                console.log(movieResult);
                 addMovie(movieResult);
                 navigate('/movies');
             })
@@ -154,15 +155,23 @@ const CreateMovie = () => {
              <label htmlFor="category">
                 <b>Category</b>
             </label>
-            <input
+            <select
                 className={styles["input-text"]}
-                type="text"
                 placeholder="Enter Category"
                 name="category"
                 id="category"
                 value={movieData.category}
                 onChange={onChange}
-            />
+            >
+                <option value="Action">Action</option>
+                <option value="Comedy">Comedy</option>
+                <option value="Drama">Drama</option>
+                <option value="Fantasy">Fantasy</option>
+                <option value="Horror">Horror</option>
+                <option value="Mystery">Mystery</option>
+                <option value="Romance">Romance</option>
+                <option value="Thriller">Thriller</option>
+            </select>
             <label htmlFor="author">
                 <b>Author</b>
             </label>

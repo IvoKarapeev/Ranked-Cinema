@@ -7,3 +7,5 @@ export const getAll = () => requester.get(baseUrl);
 export const getDetails = (movieId) => requester.get(`${baseUrl}/${movieId}`)
 
 export const create = (movieData) => requester.post(baseUrl,movieData);
+
+export const edit = (movieId,movieData) => requester.put(`${baseUrl}/${movieId}`,movieData);

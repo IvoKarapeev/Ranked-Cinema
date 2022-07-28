@@ -27,14 +27,13 @@ function App() {
 
     const getDetails = (movieId) => {
         return movieService.getDetails(movieId)
-            .then(res => res.json());
     };
 
     return (
-        <MovieContext.Provider value={{movies,getDetails}} >
-            <div>
-                <Header />
+        <div>
+            <Header />
 
+            <MovieContext.Provider value={{movies,getDetails}} >
                 <main>
                     <Routes>
                         <Route path="/" element={<Home />}/>
@@ -46,8 +45,8 @@ function App() {
                         <Route path="/login" element={<Login />}/>
                     </Routes>
                 </main>
-            </div>
-        </MovieContext.Provider>
+            </MovieContext.Provider>
+        </div>
     );
 }
 

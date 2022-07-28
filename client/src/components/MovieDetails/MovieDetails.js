@@ -6,7 +6,7 @@ import styles from './MovieDetails.module.css';
 const MovieDetails = () => {
 
     const { movieId } = useParams();
-    const { getDetails} = useContext(MovieContext);
+    const { getDetails } = useContext(MovieContext);
     const [movie,setMovie] = useState({});
 
     useEffect(() => {

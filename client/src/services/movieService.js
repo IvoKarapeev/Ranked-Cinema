@@ -1,10 +1,7 @@
-const baseUrl = 'http://localhost:3030';
+import * as requester from '../services/requester';
 
-export const getAll = () => {
-    return fetch(`${baseUrl}/movies/`)
-        .then(res => res.json());
-};
+const baseUrl = 'http://localhost:3030/movies';
 
-export const getDetails = (movieId) => {
-    return fetch(`${baseUrl}/movies/${movieId}`);
-}
+export const getAll = () => requester.get(baseUrl);
+
+export const getDetails = (movieId) => requester.get(`${baseUrl}/${movieId}`)

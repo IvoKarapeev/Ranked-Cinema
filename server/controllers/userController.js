@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const userService = require('../services/userService');
-const { isAuth,isGuest } = require('../middlewares/userMiddlewares');
+const { isGuest } = require('../middlewares/userMiddlewares');
 
 
 router.post('/register',isGuest,async (req,res) => {
@@ -16,11 +16,15 @@ router.post('/register',isGuest,async (req,res) => {
         const user = await userService.register(firstName, secondName, username, password);
         const token = await userService.createToken(user);
 
-        return res.json(token);
+        return res.json({
+            'AccessToken':token,
+            _id:user._id,
+            username:user.username
+        });
 
     } catch (error) {
 
-        res.json(error);
+        res.json({error:error});
     }
 
 });
@@ -33,18 +37,16 @@ router.post('/login',isGuest,async (req,res) => {
         const user = await userService.login(username,password);
         const token = await userService.createToken(user);
 
-        return res.json(token);
+        return res.json({
+            'AccessToken':token,
+            _id:user._id,
+            username:user.username
+        });
 
     } catch (error) {
         
-        res.json(error);
+        res.json({error:error});
     }
-
-});
-
-router.get('/logout',isAuth,(req,res) => {
-
-    res.json('You have logged out of your account');
 
 });
 

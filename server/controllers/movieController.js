@@ -123,7 +123,8 @@ router.get('/comment/:movieId', async (req,res) => {
 
      } catch (error) {
           
-          res.json(error);
+          res.status(400).json({error});
+
      }
 
 });
@@ -142,7 +143,7 @@ router.post('/comment/:movieId',isAuth, async (req,res) => {
 
      } catch (error) {
           
-          res.json(error)
+          res.status(400).json({error});
 
      }
 

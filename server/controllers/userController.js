@@ -24,7 +24,7 @@ router.post('/register',isGuest,async (req,res) => {
 
     } catch (error) {
 
-        res.json({error:error});
+        res.status(404).json({error});
     }
 
 });
@@ -45,7 +45,8 @@ router.post('/login',isGuest,async (req,res) => {
 
     } catch (error) {
         
-        res.json({error:error});
+        res.status(404).json({error});
+
     }
 
 });

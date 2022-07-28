@@ -4,12 +4,15 @@ const requester = async (method,url,data) => {
 
         const auth = JSON.parse(user || '{}');
 
-        let headers = {}
+        let headers = {};
 
-        if (auth.accessToken) {
-            headers['X-Authorization'] = auth.accessToken
-        }
+        if (auth.AccessToken) {
+            headers['X-Authorization'] = auth.AccessToken
+        };
 
+        console.log( {...headers,
+            'content-type':'application/json'});
+        
         let buildRequest;
         if (method === 'GET') {
            buildRequest = fetch(url,{ headers });
@@ -25,12 +28,17 @@ const requester = async (method,url,data) => {
         }
         
         const response = await buildRequest;
-        
         const result = await response.json();
-
-        return result;
-    } catch (error) {
         
+        if (response.error) {
+            return {}
+        }else {
+            return result;
+        };
+
+
+    } catch (error) {
+        return {}
     }
 }
 

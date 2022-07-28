@@ -1,8 +1,16 @@
-import { useState } from 'react';
+import * as authService from '../../services/authService';
+
+import { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthContext';
+
 import styles from './Login.module.css';
 
-
 const Login = () => {
+
+    const { userLogin } = useContext(AuthContext);
+    const navigate = useNavigate();
+
     const [userData,setUserData] = useState({
         username:'',
         password:''
@@ -22,14 +30,19 @@ const Login = () => {
     const onSubmit = (e) => {
         e.preventDefault();
 
+        authService.login(userData.username,userData.password)
+            .then(authData => {
+                userLogin(authData);
+                navigate('/');
+            })
+            .catch(() => {
+                navigate('/');
+            });
+
+
         setUserData({
-            name:'',
-            description:'',
-            imageUrl:'',
-            trailerUrl:'',
-            actors:'',
-            category:'',
-            author:''
+            username:'',
+            password:''
         });
     };
 

@@ -15,6 +15,7 @@ import Register from './components/Register/Register';
 import Login from './components/Login/Login';
 import useLocalStorige from './hooks/useLocalStorige';
 import Logout from './components/Logout/Logout';
+import DeleteMovie from './components/DeleteMovie/DeleteMovie';
 
 
 function App() {
@@ -50,6 +51,10 @@ function App() {
 
     const editMovie = (movieId,movieData) => {
         setMovies(state => state.map(x => x._id === movieId ? movieData : x));
+    };
+
+    const removeMovie = (movieId) => {
+        setMovies(state => state.filter(x => x._id != movieId));
     }
     
 
@@ -58,7 +63,7 @@ function App() {
             <div>
                 <Header />
 
-                <MovieContext.Provider value={{movies,getDetails,addMovie,editMovie}} >
+                <MovieContext.Provider value={{movies,getDetails,addMovie,editMovie,removeMovie}} >
                     <main>
                         <Routes>
                             <Route path="/" element={<Home />}/>
@@ -66,6 +71,7 @@ function App() {
                             <Route path="/movies/create" element={<CreateMovie/>}/>
                             <Route path="/movies/:movieId" element={<MovieDetails/>}/>
                             <Route path="/movies/edit/:movieId" element={<EditMovie />}/>
+                            <Route path="/movies/delete/:movieId" element={<DeleteMovie />}/>
                             <Route path="/register" element={<Register />}/>
                             <Route path="/login" element={<Login />}/>
                             <Route path="/logout" element={<Logout />}/>

@@ -31,7 +31,7 @@ const Header = () => {
                         </li>
                         <li>
                             <Link to='/welcome'>
-                            Welcome,user
+                            Welcome,{user.username}
                             </Link>
                         </li>
                         <li>

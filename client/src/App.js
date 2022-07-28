@@ -41,6 +41,12 @@ function App() {
         setAuth({});
     };
 
+    const addMovie = (movieData) => {
+        setMovies(state => [
+            ...state,
+            movieData
+        ]);
+    };
     
 
     return (
@@ -48,7 +54,7 @@ function App() {
             <div>
                 <Header />
 
-                <MovieContext.Provider value={{movies,getDetails}} >
+                <MovieContext.Provider value={{movies,getDetails,addMovie}} >
                     <main>
                         <Routes>
                             <Route path="/" element={<Home />}/>

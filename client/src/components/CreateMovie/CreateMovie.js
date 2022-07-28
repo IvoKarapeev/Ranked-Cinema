@@ -1,4 +1,9 @@
-import { useState } from 'react';
+import * as movieService from '../../services/movieService';
+import { useContext, useState } from 'react';
+import { MovieContext } from '../../contexts/MovieContext';
+
+import { useNavigate } from 'react-router-dom';
+
 import styles from './CreateMovie.module.css';
 
 const CreateMovie = () => {
@@ -12,6 +17,9 @@ const CreateMovie = () => {
         category:'',
         author:''
     });
+
+    const { addMovie } = useContext(MovieContext)
+    const navigate = useNavigate();
 
     const [errors,setErrors] = useState({});
 
@@ -40,7 +48,16 @@ const CreateMovie = () => {
     const onSubmit = (e) => {
         e.preventDefault();
 
-        console.log(movieData);
+        movieService.create(movieData)
+            .then((movieResult) => {
+                addMovie(movieResult);
+                navigate('/movies');
+            })
+            .catch((err) => {
+                console.log(err);
+                navigate('/')
+            })
+
         setMovieData({
             name:'',
             description:'',

@@ -10,9 +10,6 @@ const requester = async (method,url,data) => {
             headers['X-Authorization'] = auth.AccessToken
         };
 
-        console.log( {...headers,
-            'content-type':'application/json'});
-        
         let buildRequest;
         if (method === 'GET') {
            buildRequest = fetch(url,{ headers });

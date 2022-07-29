@@ -16,6 +16,7 @@ import Login from './components/Login/Login';
 import useLocalStorige from './hooks/useLocalStorige';
 import Logout from './components/Logout/Logout';
 import DeleteMovie from './components/DeleteMovie/DeleteMovie';
+import MostLikedMovies from './components/MostLikedMovies.js/MostLikedMovies';
 
 
 function App() {
@@ -56,7 +57,7 @@ function App() {
     const removeMovie = (movieId) => {
         setMovies(state => state.filter(x => x._id != movieId));
     }
-    
+
 
     return (
         <AuthContext.Provider value={{user:auth,userLogin,userLogout}}>
@@ -68,6 +69,7 @@ function App() {
                         <Routes>
                             <Route path="/" element={<Home />}/>
                             <Route path="/movies" element={<CatalogMovies/>}/>
+                            <Route path="/movies/ranked" element={<MostLikedMovies/>}/>
                             <Route path="/movies/create" element={<CreateMovie/>}/>
                             <Route path="/movies/:movieId" element={<MovieDetails/>}/>
                             <Route path="/movies/edit/:movieId" element={<EditMovie />}/>

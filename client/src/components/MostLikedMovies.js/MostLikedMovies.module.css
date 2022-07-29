@@ -1,0 +1,187 @@
+.section-catalog
+{
+    display: flex;
+    margin-top: 2%;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 70px;
+}
+
+*
+{
+   -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+.title
+{
+  margin:0px;
+  font-size:1.4em;
+  font-weight:700;
+}
+
+.inf
+{
+  font-size:12px;
+}
+
+.center
+{
+    height:50vh;
+    width:20%;
+    display: flex; 
+    justify-content: center;
+    align-items: center; 
+}
+
+/* End Non-Essential  */
+
+.property-card
+{
+  height:18em;
+  width:14em;
+  display:-webkit-box;
+  display:-ms-flexbox;
+  display:flex;
+  -webkit-box-orient:vertical;
+  -webkit-box-direction:normal;
+  -ms-flex-direction:column;
+  flex-direction:column;
+  position:relative;
+  -webkit-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  -o-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  border-radius:16px;
+  overflow:hidden;
+  -webkit-box-shadow:  15px 15px 27px #e1e1e3, -15px -15px 27px #ffffff;
+  box-shadow:  11px 11px 11px #d2c5f3, -11px -11px 11px #d2c5f3;
+}
+/* ^-- The margin bottom is necessary for the drop shadow otherwise it gets clipped in certain cases. */
+
+/* Top Half of card, image. */
+
+.property-image
+{
+  height:12em;
+  width:16em;
+  /* padding:1em 0em 0em; */
+  position:Absolute;
+  top:-16px;
+  -webkit-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  -o-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  background-size:cover;
+  background-repeat:no-repeat;
+}
+
+/* Bottom Card Section */
+
+.property-description
+{
+  background-color: #FAFAFC;
+  height:7em;
+  width:14em;
+  position:absolute;
+  bottom:0em;
+  -webkit-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  -o-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  padding: 0.5em 1em;
+  text-align:center;
+}
+
+/* Social Icons */
+
+.property-social-icons
+{
+  width:3.5em;
+  height:1.5em;
+  color: black;
+  background-color:rgb(154, 132, 177);
+  position:absolute;
+  bottom:1em;
+  left:1em;
+  -webkit-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  -o-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+/* Property Cards Hover States */
+
+.property-card:hover .property-description
+{
+  height:0em;
+  padding:0px 1em;
+}
+.property-card:hover .property-image
+{
+  height:19em;
+}
+
+.property-card:hover .property-social-icons
+{
+  background-color:white;
+}
+
+.property-card:hover .property-social-icons:hover
+{
+  width: 56px;
+  background-color:rgb(255, 255, 255);
+  cursor:pointer;
+}
+
+.no-movies{
+  position: absolute;
+  top: 450px;
+  left: 820px;
+  text-align: center;
+  font-size: 50px;
+  color: #815e9f;
+  
+}
+
+.post-header { 
+    margin-bottom: 80px; 
+    position: relative; 
+    width: 80%;
+    text-align: center;
+    margin-left: 188px;
+
+}
+
+
+.title-text { 
+    color: #ab96b5; 
+    font-family: 'Helvetica Neue', sans-serif; 
+    font-size: 46px; 
+    font-weight: 100; 
+    line-height: 50px; 
+    letter-spacing: 1px; 
+    padding: 0 0 40px; 
+    border-bottom: double #555; 
+    text-align: center;
+}
+
+
+.text { 
+    color: #bbc3c8; 
+    font-family: 'Verdana', sans-serif; 
+    font-size: 20px; 
+    line-height: 26px; 
+    text-indent: 30px; 
+    margin: 0; 
+}
+
+
+.link { 
+    color: #c64119; 
+    border-bottom: 1px solid #c64119; 
+    text-decoration: none; 
+}
+
+
+.link:hover { 
+    color: #993213; 
+    border-bottom: 1px solid #993213; 
+}

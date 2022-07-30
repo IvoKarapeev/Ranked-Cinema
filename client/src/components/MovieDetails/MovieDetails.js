@@ -2,12 +2,15 @@ import { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 import { MovieContext } from "../../contexts/MovieContext";
+import CommentItem from "./CommentItem";
+
 import styles from "./MovieDetails.module.css";
 
 const MovieDetails = () => {
   const { movieId } = useParams();
-  const { getDetails } = useContext(MovieContext);
+  const { getDetails,getMovieComments } = useContext(MovieContext);
   const [movie, setMovie] = useState({});
+  const [comments,setComments] = useState([]);
 
   const { user } = useContext(AuthContext);
 
@@ -16,6 +19,28 @@ const MovieDetails = () => {
       setMovie(res);
     });
   }, []);
+
+  useEffect(() => {
+    getMovieComments(movieId).then((res) => {
+      res.comments.forEach(element => {
+        
+        const user = res.users.find(x => x._id == element.user);
+        if (user) {
+          
+          const comment = {
+            _id:element._id,
+            user:user.username,
+            comment:element.comment
+          };
+
+          setComments(oldComments => [
+            ...oldComments,
+            comment
+          ]);
+        };
+      });
+    })
+  },[]);
 
   return (
     <>
@@ -67,19 +92,12 @@ const MovieDetails = () => {
       </div>
       <div>
         <div className={styles["be-comment-block"]}>
-          <h1 className={styles["comments-title"]}>Comments (1)</h1>
+          <h1 className={styles["comments-title"]}>Comments ({comments.length})</h1>
           <div className={styles["be-comment"]}>
-         
-            <div className={styles["be-comment-content"]}>
-              <span className={styles["be-comment-name"]}>
-                <p>Ravi Sah</p>
-              </span>
-              <p className={styles["be-comment-text"]}>
-                Pellentesque gravida tristique ultrices. Sed blandit varius
-                mauris, vel volutpat urna hendrerit id. Curabitur rutrum dolor
-                gravida turpis tristique efficitur.
-              </p>
-            </div>
+            {comments.length > 0
+                ? comments.map(comment => <CommentItem key={comment._id} comment={comment}/>)
+                : <h2 className={styles["no-comment"]}>No comments yet</h2>
+            }
           </div>
           <form className={styles["form-block"]}>
             <div className={styles.row}>

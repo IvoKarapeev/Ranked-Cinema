@@ -56,6 +56,10 @@ function App() {
 
     const removeMovie = (movieId) => {
         setMovies(state => state.filter(x => x._id != movieId));
+    };
+
+    const getMovieComments = (movieId) => {
+        return movieService.getComments(movieId);
     }
 
 
@@ -64,7 +68,7 @@ function App() {
             <div>
                 <Header />
 
-                <MovieContext.Provider value={{movies,getDetails,addMovie,editMovie,removeMovie}} >
+                <MovieContext.Provider value={{movies,getDetails,addMovie,editMovie,removeMovie,getMovieComments}} >
                     <main>
                         <Routes>
                             <Route path="/" element={<Home />}/>

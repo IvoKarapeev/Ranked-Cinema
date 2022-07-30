@@ -56,8 +56,7 @@ const Login = () => {
     return (
         <form onSubmit={onSubmit}>
         <div className={styles.container}>
-        <h1>Register</h1>
-        <p>Please fill in this form to create an account.</p>
+        <h1>Login</h1>
         <hr className={styles.separator}/>
          <label htmlFor="username">
             <b>Username</b>

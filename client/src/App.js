@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import * as movieService from './services/movieService';
 import { MovieContext } from './contexts/MovieContext';
 import { AuthContext } from './contexts/AuthContext';
+import PriveteRoute from './components/common/PrivateRoute';
 
 import Home from "./components/Home/Home";
 import Header from "./components/Header/Header";
@@ -17,6 +18,7 @@ import useLocalStorige from './hooks/useLocalStorige';
 import Logout from './components/Logout/Logout';
 import DeleteMovie from './components/DeleteMovie/DeleteMovie';
 import MostLikedMovies from './components/MostLikedMovies.js/MostLikedMovies';
+import GuestRoute from './components/common/GuestRoute';
 
 
 function App() {
@@ -68,7 +70,7 @@ function App() {
 
 
     return (
-        <AuthContext.Provider value={{user:auth,userLogin,userLogout}}>
+        <AuthContext.Provider value={{user:auth,userLogin,userLogout,isAuthenticated: !!auth.AccessToken}}>
             <div>
                 <Header />
 
@@ -83,16 +85,20 @@ function App() {
                 }}>
                     <main>
                         <Routes>
-                            <Route path="/" element={<Home />}/>
-                            <Route path="/movies" element={<CatalogMovies/>}/>
-                            <Route path="/movies/ranked" element={<MostLikedMovies/>}/>
-                            <Route path="/movies/create" element={<CreateMovie/>}/>
-                            <Route path="/movies/:movieId" element={<MovieDetails/>}/>
-                            <Route path="/movies/edit/:movieId" element={<EditMovie />}/>
-                            <Route path="/movies/delete/:movieId" element={<DeleteMovie />}/>
-                            <Route path="/register" element={<Register />}/>
-                            <Route path="/login" element={<Login />}/>
-                            <Route path="/logout" element={<Logout />}/>
+                                <Route path="/" element={<Home />}/>
+                                <Route path="/movies" element={<CatalogMovies/>}/>
+                                <Route path="/movies/ranked" element={<MostLikedMovies/>}/>
+                                <Route path="/movies/:movieId" element={<MovieDetails/>}/>
+                            <Route element={<GuestRoute/>}>
+                                <Route path="/register" element={<Register />}/>
+                                <Route path="/login" element={<Login />}/>
+                            </Route>
+                            <Route element ={<PriveteRoute />}>
+                                <Route path="/movies/create" element={<CreateMovie/>}/>
+                                <Route path="/movies/edit/:movieId" element={<EditMovie />}/>
+                                <Route path="/movies/delete/:movieId" element={<DeleteMovie />}/>
+                                <Route path="/logout" element={<Logout />}/>
+                            </Route>
                         </Routes>
                     </main>
                 </MovieContext.Provider>

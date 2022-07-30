@@ -120,24 +120,27 @@ const MovieDetails = () => {
               <h2 className={styles["no-comment"]}>No comments yet</h2>
             )}
           </div>
-          <form className={styles["form-block"]} onSubmit={onSubmit}>
-            <div className={styles.row}>
-              <div className={styles["col-xs-12"]}>
-                <div className={styles["form-group"]}>
-                  <textarea
-                    className={styles["form-input"]}
-                    required=""
-                    placeholder="Your text"
-                    defaultValue={""}
-                    name="comment"
-                  />
+          {user.AccessToken 
+            &&
+            <form className={styles["form-block"]} onSubmit={onSubmit}>
+                <div className={styles.row}>
+                <div className={styles["col-xs-12"]}>
+                    <div className={styles["form-group"]}>
+                    <textarea
+                        className={styles["form-input"]}
+                        required=""
+                        placeholder="Your text"
+                        defaultValue={""}
+                        name="comment"
+                    />
+                    </div>
                 </div>
-              </div>
-              <button className={styles["btn btn-primary pull-right"]}>
-                submit
-              </button>
-            </div>
-          </form>
+                <button className={styles["btn btn-primary pull-right"]}>
+                    submit
+                </button>
+                </div>
+            </form>}
+         
         </div>
       </div>
     </>

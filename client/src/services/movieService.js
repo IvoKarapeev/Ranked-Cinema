@@ -14,3 +14,5 @@ export const del = (movieId) => requester.del(`${baseUrl}/${movieId}`);
 
 export const getComments = (movieId) => requester.get(`${baseUrl}/comment/${movieId}`);
 
+export const postComment = (movieId,comment) => requester.post(`${baseUrl}/comment/${movieId}`,{comment});
+

@@ -60,6 +60,10 @@ function App() {
 
     const getMovieComments = (movieId) => {
         return movieService.getComments(movieId);
+    };
+
+    const postMovieComment = (movieId,comment) => {
+        return movieService.postComment(movieId,comment);
     }
 
 
@@ -68,7 +72,15 @@ function App() {
             <div>
                 <Header />
 
-                <MovieContext.Provider value={{movies,getDetails,addMovie,editMovie,removeMovie,getMovieComments}} >
+                <MovieContext.Provider value={{
+                    movies,
+                    getDetails,
+                    addMovie,
+                    editMovie,
+                    removeMovie,
+                    getMovieComments,
+                    postMovieComment
+                }}>
                     <main>
                         <Routes>
                             <Route path="/" element={<Home />}/>

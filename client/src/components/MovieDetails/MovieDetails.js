@@ -7,40 +7,56 @@ import CommentItem from "./CommentItem";
 import styles from "./MovieDetails.module.css";
 
 const MovieDetails = () => {
-  const { movieId } = useParams();
-  const { getDetails,getMovieComments } = useContext(MovieContext);
-  const [movie, setMovie] = useState({});
-  const [comments,setComments] = useState([]);
+    const { movieId } = useParams();
+    const { getDetails, getMovieComments, postMovieComment } = useContext(MovieContext);
+    const [movie, setMovie] = useState({});
+    const [comments, setComments] = useState([]);
 
-  const { user } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
 
-  useEffect(() => {
-    getDetails(movieId).then((res) => {
-      setMovie(res);
-    });
-  }, []);
+    useEffect(() => {
+        getDetails(movieId).then((res) => {
+        setMovie(res);
+        });
+    }, []);
 
-  useEffect(() => {
-    getMovieComments(movieId).then((res) => {
-      res.comments.forEach(element => {
-        
-        const user = res.users.find(x => x._id == element.user);
-        if (user) {
-          
-          const comment = {
-            _id:element._id,
-            user:user.username,
-            comment:element.comment
-          };
+    useEffect(() => {
+        getMovieComments(movieId).then((res) => {
+        res.comments.forEach((element) => {
+            const user = res.users.find((x) => x._id == element.user);
+            if (user) {
+            const comment = {
+                _id: element._id,
+                user: user.username,
+                comment: element.comment,
+            };
 
-          setComments(oldComments => [
-            ...oldComments,
-            comment
-          ]);
-        };
-      });
-    })
-  },[]);
+            setComments((oldComments) => [...oldComments, comment]);
+            }
+        });
+        });
+    }, []);
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+
+        const {comment} = Object.fromEntries(new FormData(e.target));
+
+        postMovieComment(movieId,comment)
+            .then(res => {
+
+                const newComment = {
+                    _id:res.comments[res.comments.length - 1]._id,
+                    user:res.comments[res.comments.length - 1].user.username,
+                    comment:res.comments[res.comments.length - 1].comment
+                };
+
+                setComments(oldComments => [
+                    ...oldComments,
+                    newComment
+                ]);
+            })
+    }
 
   return (
     <>
@@ -92,14 +108,19 @@ const MovieDetails = () => {
       </div>
       <div>
         <div className={styles["be-comment-block"]}>
-          <h1 className={styles["comments-title"]}>Comments ({comments.length})</h1>
+          <h1 className={styles["comments-title"]}>
+            Comments ({comments.length})
+          </h1>
           <div className={styles["be-comment"]}>
-            {comments.length > 0
-                ? comments.map(comment => <CommentItem key={comment._id} comment={comment}/>)
-                : <h2 className={styles["no-comment"]}>No comments yet</h2>
-            }
+            {comments.length > 0 ? (
+              comments.map((comment) => (
+                <CommentItem key={comment._id} comment={comment} />
+              ))
+            ) : (
+              <h2 className={styles["no-comment"]}>No comments yet</h2>
+            )}
           </div>
-          <form className={styles["form-block"]}>
+          <form className={styles["form-block"]} onSubmit={onSubmit}>
             <div className={styles.row}>
               <div className={styles["col-xs-12"]}>
                 <div className={styles["form-group"]}>
@@ -108,10 +129,13 @@ const MovieDetails = () => {
                     required=""
                     placeholder="Your text"
                     defaultValue={""}
+                    name="comment"
                   />
                 </div>
               </div>
-              <button className={styles["btn btn-primary pull-right"]}>submit</button>
+              <button className={styles["btn btn-primary pull-right"]}>
+                submit
+              </button>
             </div>
           </form>
         </div>

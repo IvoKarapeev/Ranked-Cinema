@@ -31,7 +31,7 @@ router.post('/',isAuth, async (req,res) => {
 
    try {
     
-        const createdMovie = await movieService.create(newMovie);
+        const createdMovie = await movieService.create(newMovie,creator);
         
         res.send(createdMovie);
 

@@ -3,7 +3,9 @@ const User = require('../models/User');
 
 exports.getAll = () => Movie.find();
 
-exports.create = async (movieItam) =>{
+exports.create = async (movieItam,creator) =>{
+
+    const user = await User.findById(creator._id)
 
     if (!movieItam.imageUrl.startsWith('http')) {
         throw{
@@ -17,8 +19,12 @@ exports.create = async (movieItam) =>{
         };
     };
 
-    return await Movie.create(movieItam);
+    const movie = await Movie.create(movieItam);
+    user.createdMovies.push(movie)
 
+    user.save();
+
+    return movie;
 } 
 exports.getOneDetailed = async (movieId) => {
 

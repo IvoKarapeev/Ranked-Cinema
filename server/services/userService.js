@@ -65,3 +65,5 @@ exports.createToken = (user) => {
     });
 
 };
+
+exports.getMovies = async (userId) => await User.findById(userId).populate('createdMovies');

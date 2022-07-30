@@ -47,4 +47,15 @@ router.post('/login',isGuest,async (req,res) => {
 
 });
 
+
+router.get('/profile', async (req,res) => {
+
+    const userId = req.user._id;
+
+    const movies = await userService.getMovies(userId)
+
+    return res.json(movies.createdMovies);
+
+})
+
 module.exports = router;

@@ -19,7 +19,11 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required:true
-    }
+    },
+    createdMovies:[{
+        type:mongoose.Types.ObjectId,
+        ref:'Movie'
+    }]
 });
 
 const User = mongoose.model('User',userSchema);

@@ -14,7 +14,7 @@ const CreateMovie = () => {
         imageUrl:'',
         trailerUrl:'',
         actors:'',
-        category:'',
+        category:'Action',
         author:''
     });
 

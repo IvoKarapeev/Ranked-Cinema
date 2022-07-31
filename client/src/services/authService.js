@@ -7,3 +7,5 @@ export const login = (username,password) =>
 
 export const register = (firstName,secondName,username,password) => 
     request.post(`${baseUrl}/register`, { firstName,secondName,username,password });
+
+export const getUserPosts = (userId) => request.get(`${baseUrl}/profile`);

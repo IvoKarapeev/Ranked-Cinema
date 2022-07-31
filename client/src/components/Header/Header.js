@@ -30,7 +30,7 @@ const Header = () => {
                         <Link to='/movies/create'>Create Movie</Link>
                         </li>
                         <li>
-                            <Link to='/welcome'>
+                            <Link to='/profile/user'>
                             Welcome,{user.username}
                             </Link>
                         </li>

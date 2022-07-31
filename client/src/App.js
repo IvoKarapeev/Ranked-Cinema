@@ -19,6 +19,7 @@ import Logout from './components/Logout/Logout';
 import DeleteMovie from './components/DeleteMovie/DeleteMovie';
 import MostLikedMovies from './components/MostLikedMovies.js/MostLikedMovies';
 import GuestRoute from './components/common/GuestRoute';
+import Profile from './components/Profile/Profile';
 
 
 function App() {
@@ -66,8 +67,7 @@ function App() {
 
     const postMovieComment = (movieId,comment) => {
         return movieService.postComment(movieId,comment);
-    }
-
+    };
 
     return (
         <AuthContext.Provider value={{user:auth,userLogin,userLogout,isAuthenticated: !!auth.AccessToken}}>
@@ -98,6 +98,7 @@ function App() {
                                 <Route path="/movies/edit/:movieId" element={<EditMovie />}/>
                                 <Route path="/movies/delete/:movieId" element={<DeleteMovie />}/>
                                 <Route path="/logout" element={<Logout />}/>
+                                <Route path="/profile/user" element={<Profile />}/>
                             </Route>
                         </Routes>
                     </main>

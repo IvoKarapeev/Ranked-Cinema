@@ -10,7 +10,7 @@ const MovieItam = ({movie}) => {
             <div className={styles["property-description"]}>
                 <h5 className={styles.title}> {movie.name} </h5>
                 <p className={styles.inf}>
-                {movie.trailerUrl}
+                {movie.category}
                 </p>
             </div>
             <Link to={`/movies/${movie._id}`}>

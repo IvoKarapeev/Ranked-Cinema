@@ -94,7 +94,7 @@ const Register = () => {
             <div className={styles.validate}>First Name should be at least 2 characters long</div>
         }
          <label htmlFor="secondName">
-            <b>secondName</b>
+            <b>Second Name</b>
         </label>
         <input
             className={styles["input-text"]}

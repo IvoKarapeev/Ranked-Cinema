@@ -40,5 +40,3 @@ Requests url: users/profile
 GET - It will return the current user movies
 
 !For any authenticated Request you need to send the json web token from the rest api in the request in the headers!!!
-
-

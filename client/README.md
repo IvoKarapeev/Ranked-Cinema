@@ -1,70 +1,44 @@
-# Getting Started with Create React App
+Welcome to Ranked-Cinema
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+To start this App first you need to go to folder server and run on terminal npm start.
+This will start the server and then you can make a requests to him.
 
-## Available Scripts
+Then you need to go to the folder client and run on terminal npm start.
+This will start the Application on your browser.
 
-In the project directory, you can run:
+Ranked-Cinema is an application where you can see movies shared by other users that they liked. So you can search the movie catalog for a movie you haven't seen yet and find what you're looking for. You can also create a profile and share your favorite movies that you haven't found in the catalog. That way, other users will also be able to find the movies you've shared. Every time a particular movie is opened, its views increase. There is a page where you can see the most opened movies, which are the most popular for this reason and browse from most viewed to least viewed. Also, under each shared movie there are comments that you can see. So everyone can share their opinion about the movie on the site and see how others rate it. Also you can also add a comment for any movie you want. The creators of the movies have the option to edit their shared movies if they have made a mistake or delete it if they wish! Also you can see your profile page where are only the movies that you have been created and you can see how many views they have and what comments they have ! 
 
-### `npm start`
+The Rest Api is created with node.js and for database I use mongoDB.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+host:http://localhost:3030/
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+FOR MOVIES:
+Requests url: movies/
+GET - It will return an array with all the movies in the database
+POST - You need to send a body with movieData and it will create and return a movie in the database
 
-### `npm test`
+Requests url: movies/:movieId
+GET - Return a current movie from all movies in the database if there is any 
+PUT - You need to send a new body for the selected movie and it will edit the old movie in the database and it will return the movie
+DELETE - It will delete the movie from the database if there is any
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Requests url: movies/edit/:movieId
+GET - It will return you the details for the current movie that you need to edit to send after that to edit it 
 
-### `npm run build`
+Request url: movies/comment/:movieId
+GET - It will return an array with all the comments and the users who comment if there is any in the database
+POST - You need to send a comment for this request the your comment will be saved in the movies comments 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+FOR USERS:
+Requests url: users/register
+POST - It will create a user in the database and it will return a json web token 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Requests url: users/login
+POST - It will find the user in the database and if there is any it will return a json web token
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Requests url: users/profile
+GET - It will return the current user movies
 
-### `npm run eject`
+!For any authenticated Request you need to send the json web token from the rest api in the request in the headers!!!
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

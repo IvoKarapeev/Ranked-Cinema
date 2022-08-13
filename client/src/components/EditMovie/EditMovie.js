@@ -56,6 +56,10 @@ const EditMovie = () => {
     const onSubmit = (e) => {
         e.preventDefault();
 
+        if (movieData.name && movieData.description && movieData.imageUrl
+            && movieData.trailerUrl && movieData.actors && movieData.category && movieData.author ) {
+            
+        
 
         movieService.edit(movieId,movieData)
             .then((movieResult) => {
@@ -72,7 +76,7 @@ const EditMovie = () => {
             category:'',
             author:''
         });
-    };
+    }};
     
     return (
         <form onSubmit={onSubmit}>
